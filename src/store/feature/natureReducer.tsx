@@ -72,7 +72,7 @@ const initialStateValue = [
         hei: 35 - 36,
         lig: 15 - 16
     },
-    
+
     {
         id: 7,
         name: 'Peperomia',
@@ -85,7 +85,7 @@ const initialStateValue = [
         hei: 35 - 36,
         lig: 15 - 16
     },
-    
+
     {
         id: 8,
         name: 'Peperomia',
@@ -98,7 +98,7 @@ const initialStateValue = [
         hei: 35 - 36,
         lig: 15 - 16
     },
-    
+
     {
         id: 9,
         name: 'Peperomia',
@@ -112,11 +112,6 @@ const initialStateValue = [
         lig: 15 - 16
     },
 ]
-
-
-
-
-
 export const natureSlice = createSlice({
     name: 'nature1',
     initialState: { value: initialStateValue },
