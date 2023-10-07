@@ -7,6 +7,7 @@ import SplasScreen from './src/navigation/Stack/SplasStack/SplasScreen';
 import HomeScreen from './src/navigation/Stack/Home/HomeScreen';
 import { store } from './src/store/store';
 import Home2Screen from './src/navigation/Stack/Home2Stack/Home2Screen';
+import BasketScreen from './src/navigation/Stack/BasketStack/BasketScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -17,7 +18,8 @@ const App = () => {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="SplasScreen" component={SplasScreen} />
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
-        {/* <Stack.Screen name="Home2Screen" component={Home2Screen} /> */}
+        <Stack.Screen name="Home2Screen" component={Home2Screen} />
+        <Stack.Screen name="BasketScreen" component={BasketScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
