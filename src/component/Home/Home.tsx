@@ -4,41 +4,45 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faMagnifyingGlass, faBarsStaggered , faPlus, faCheck } from '@fortawesome/free-solid-svg-icons';
 import homecss from './homecss';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleFavorite } from '../../store/feature/natureReducer';
-const Home = () => {
-    const data = useSelector((state: any) => state.natureReducer.value)
-    const uniqueCategories = Array.from(
-        new Set(data.map((item: any) => item.category))
-    );
+import { nattureaction, toggleFavorite } from '../../store/feature/natureReducer';
+const Home = ({navigation}:any) => {
+    const data = useSelector((state: any) => state.natureReducer.value);
+    // const uniqueCategories = Array.from(
+    //     new Set(data.map((item: any) => item.category))
+    // );
     const dispatch = useDispatch()
     const [selectedItem, setSelectedItem] = useState(null);
 
-    const handleItemPress = (item: any) => {
-        setSelectedItem(item);
-    };
+    // const handleItemPress = (item: any) => {
+    //     setSelectedItem(item);
+    // };
     const handle =(item2:any)=>{
         dispatch(toggleFavorite(item2.id))    
       }
-    const renderItem = (item: any) => {
-        const isSelected = selectedItem === item;
-        const buttonStyle = [
-            homecss.touc,
-            isSelected ? homecss.touc2 : null,
-        ];
-        const button = [
-            homecss.text1,
-            isSelected ? homecss.text2 : null,
-        ]
-        return (
-            <TouchableOpacity
-                style={buttonStyle}
-                key={item}
-                onPress={() => handleItemPress(item)}
-            >
-                <Text style={button}>{item}</Text>
-            </TouchableOpacity>
-        );
-    };
+      const handle2 = (data:any)=>{
+        dispatch(nattureaction(data))    
+        navigation.navigate('Home2Screen', { screen: 'Home2' })
+      }
+    // const renderItem = (item: any) => {
+    //     const isSelected = selectedItem === item;
+    //     const buttonStyle = [
+    //         homecss.touc,
+    //         isSelected ? homecss.touc2 : null,
+    //     ];
+    //     const button = [
+    //         homecss.text1,
+    //         isSelected ? homecss.text2 : null,
+    //     ]
+    //     return (
+    //         <TouchableOpacity
+    //             style={buttonStyle}
+    //             key={item}
+    //             onPress={() => handleItemPress(item)}
+    //         >
+    //             <Text style={button}>{item}</Text>
+    //         </TouchableOpacity>
+    //     );
+    // };
 
     const rendertitem = (data: any, index: any) => {
         const isEvenIndex = index % 2 === 0;
@@ -62,7 +66,7 @@ const Home = () => {
                             </View>
                         </View>
                         <View style={homecss.view3}>
-                            <TouchableOpacity style={homecss.touc3}>
+                            <TouchableOpacity style={homecss.touc3} onPress={()=>handle2(data)}>
                                 <Image source={data.imge} style={homecss.img} />
                             </TouchableOpacity>
                         </View>
@@ -70,7 +74,7 @@ const Home = () => {
                 ) : (
                     <>
                         <View style={homecss.view4}>
-                            <TouchableOpacity style={homecss.touc3}>
+                            <TouchableOpacity style={homecss.touc3} onPress={()=>handle2(data)}>
                                 <Image source={data.imge} style={homecss.img1} />
                             </TouchableOpacity>
                         </View>
@@ -109,11 +113,11 @@ const Home = () => {
                 <Text style={homecss.text}>Find the Perfect plant for your home</Text>
             </View>
             <View style={homecss.flatlsitview}>
-                <FlatList
+                {/* <FlatList
                     data={uniqueCategories}
                     renderItem={({ item }) => renderItem(item)}
                     horizontal={true}
-                />
+                /> */}
             </View>
             <View style={{flex:1}}>
                 <FlatList
